@@ -21,4 +21,12 @@ public class HelloWorld extends OpMode {
     public void loop() {
 
     }
+
+    public void SheetalTest(){
+        //Some code
+    }
+
+    private void RatikTest(){
+        // some more code
+    }
 }
