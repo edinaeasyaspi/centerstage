@@ -10,8 +10,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
-    private DcMotor         leftDrive   = null;
-    private DcMotor         rightDrive  = null;
+    private DcMotor         frontLeftDrive   = null;
+    private DcMotor         frontRightDrive  = null;
+    private DcMotor         backLeftDrive    = null;
+    private DcMotor         backRightDrive   = null;
 
     private ElapsedTime     runtime = new ElapsedTime();
 
@@ -26,21 +28,39 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+        frontLeftDrive  = hardwareMap.get(DcMotor.class, "frontLeft_drive");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight_drive");
+        backLeftDrive   = hardwareMap.get(DcMotor.class, "backLeft_drive");
+        backRightDrive  = hardwareMap.get(DcMotor.class, "backRight_drive");
 
-        leftDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
 
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+
+
+
+        frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         telemetry.addData("Starting at",  "%7d :%7d",
-                leftDrive.getCurrentPosition(),
-                rightDrive.getCurrentPosition());
+                frontLeftDrive.getCurrentPosition(),
+                frontRightDrive.getCurrentPosition());
+
+        telemetry.update();
+
+        telemetry.addData("Starting at",  "%7d :%7d",
+                backLeftDrive.getCurrentPosition(),
+                backRightDrive.getCurrentPosition());
+
         telemetry.update();
 
         waitForStart();
@@ -63,33 +83,50 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            newLeftTarget = leftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = rightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            leftDrive.setTargetPosition(newLeftTarget);
-            rightDrive.setTargetPosition(newRightTarget);
+            newLeftTarget = frontLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newRightTarget = frontRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
 
-            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            frontLeftDrive.setTargetPosition(newLeftTarget);
+            frontRightDrive.setTargetPosition(newRightTarget);
+            backLeftDrive.setTargetPosition(newLeftTarget);
+            backRightDrive.setTargetPosition(newRightTarget);
+
+            frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             runtime.reset();
-            leftDrive.setPower(Math.abs(speed));
-            rightDrive.setPower(Math.abs(speed));
+            frontLeftDrive.setPower(Math.abs(speed));
+            frontRightDrive.setPower(Math.abs(speed));
+            backLeftDrive.setPower(Math.abs(speed));
+            backRightDrive.setPower(Math.abs(speed));
 
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (leftDrive.isBusy() && rightDrive.isBusy())) {
+                    frontLeftDrive.isBusy() &&
+                     frontRightDrive.isBusy() &&
+                backLeftDrive.isBusy() &&
+                    backRightDrive.isBusy())
+            {
 
                 telemetry.addData("Running to",  " %7d :%7d", newLeftTarget,  newRightTarget);
                 telemetry.addData("Currently at",  " at %7d :%7d",
-                        leftDrive.getCurrentPosition(), rightDrive.getCurrentPosition());
+                        frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition());
                 telemetry.update();
             }
 
-            leftDrive.setPower(0);
-            rightDrive.setPower(0);
+            frontLeftDrive.setPower(0);
+            frontRightDrive.setPower(0);
+            backLeftDrive.setPower(0);
+            backRightDrive.setPower(0);
 
-            leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             sleep(250);
         }
