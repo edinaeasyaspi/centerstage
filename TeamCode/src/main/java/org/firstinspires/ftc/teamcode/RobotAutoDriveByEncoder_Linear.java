@@ -77,19 +77,23 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS) {
-        int newLeftTarget;
-        int newRightTarget;
+        int newBackLeftTarget;
+        int newBackRightTarget;
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
 
 
         if (opModeIsActive()) {
             
-            newLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newBackLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newBackRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newFrontLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newFrontRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
 
-            frontLeftDrive.setTargetPosition(newLeftTarget);
-            frontRightDrive.setTargetPosition(newRightTarget);
-            backLeftDrive.setTargetPosition(newLeftTarget);
-            backRightDrive.setTargetPosition(newRightTarget);
+            frontLeftDrive.setTargetPosition(newBackLeftTarget);
+            frontRightDrive.setTargetPosition(newBackRightTarget);
+            backLeftDrive.setTargetPosition(newFrontLeftTarget);
+            backRightDrive.setTargetPosition(newFrontRightTarget);
 
             frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -110,7 +114,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
                     backRightDrive.isBusy())
             {
 
-                telemetry.addData("Running to",  " %7d :%7d", newLeftTarget,  newRightTarget);
+                telemetry.addData("Running to",  " %7d :%7d", newBackLeftTarget,  newBackRightTarget);
                 telemetry.addData("Currently at",  " at %7d :%7d",
                         frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition());
                 telemetry.update();
