@@ -84,7 +84,6 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
 
         if (opModeIsActive()) {
-            
             newBackLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
             newBackRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
             newFrontLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
