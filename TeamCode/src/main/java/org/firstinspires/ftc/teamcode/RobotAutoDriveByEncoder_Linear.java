@@ -10,12 +10,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
-    private DcMotor         frontLeftDrive   = null;
-    private DcMotor         frontRightDrive  = null;
-    private DcMotor         backLeftDrive    = null;
-    private DcMotor         backRightDrive   = null;
+    private DcMotor         frontLeftMotor   = null;
+    private DcMotor         frontRightMotor = null;
+    private DcMotor         backLeftMotor    = null;
+    private DcMotor         backRightMotor  = null;
 
-    private ElapsedTime     runtime = new ElapsedTime();
+    private final ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
     static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // No External Gearing.
@@ -28,38 +28,38 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        frontLeftDrive  = hardwareMap.get(DcMotor.class, "frontLeft_drive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight_drive");
-        backLeftDrive   = hardwareMap.get(DcMotor.class, "backLeft_drive");
-        backRightDrive  = hardwareMap.get(DcMotor.class, "backRight_drive");
+        frontLeftMotor  = hardwareMap.get(DcMotor.class, "frontLeft_drive");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRight_drive");
+        backLeftMotor  = hardwareMap.get(DcMotor.class, "backLeft_drive");
+        backRightMotor  = hardwareMap.get(DcMotor.class, "backRight_drive");
 
-        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
-
-
-        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
 
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
-        frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         telemetry.addData("Starting at",  "%7d :%7d",
-                frontLeftDrive.getCurrentPosition(),
-                frontRightDrive.getCurrentPosition());
+                frontLeftMotor.getCurrentPosition(),
+                frontRightMotor.getCurrentPosition());
 
         telemetry.update();
 
         telemetry.addData("Starting at",  "%7d :%7d",
-                backLeftDrive.getCurrentPosition(),
-                backRightDrive.getCurrentPosition());
+                backLeftMotor.getCurrentPosition(),
+                backRightMotor.getCurrentPosition());
 
         telemetry.update();
 
@@ -85,50 +85,50 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
         if (opModeIsActive()) {
             
-            newBackLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newBackRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            newFrontLeftTarget = backLeftDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newFrontRightTarget = backRightDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newBackLeftTarget = backLeftMotor.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newBackRightTarget = backRightMotor.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newFrontLeftTarget = backLeftMotor.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newFrontRightTarget = backRightMotor.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
 
-            frontLeftDrive.setTargetPosition(newBackLeftTarget);
-            frontRightDrive.setTargetPosition(newBackRightTarget);
-            backLeftDrive.setTargetPosition(newFrontLeftTarget);
-            backRightDrive.setTargetPosition(newFrontRightTarget);
+            frontLeftMotor.setTargetPosition(newBackLeftTarget);
+            frontRightMotor.setTargetPosition(newBackRightTarget);
+            backLeftMotor.setTargetPosition(newFrontLeftTarget);
+            backRightMotor.setTargetPosition(newFrontRightTarget);
 
-            frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            frontRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             runtime.reset();
-            frontLeftDrive.setPower(Math.abs(speed));
-            frontRightDrive.setPower(Math.abs(speed));
-            backLeftDrive.setPower(Math.abs(speed));
-            backRightDrive.setPower(Math.abs(speed));
+            frontLeftMotor.setPower(Math.abs(speed));
+            frontRightMotor.setPower(Math.abs(speed));
+            backLeftMotor.setPower(Math.abs(speed));
+            backRightMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    frontLeftDrive.isBusy() &&
-                     frontRightDrive.isBusy() &&
-                backLeftDrive.isBusy() &&
-                    backRightDrive.isBusy())
+                    frontLeftMotor.isBusy() &&
+                     frontRightMotor.isBusy() &&
+                backLeftMotor.isBusy() &&
+                    backRightMotor.isBusy())
             {
 
                 telemetry.addData("Running to",  " %7d :%7d", newBackLeftTarget,  newBackRightTarget);
                 telemetry.addData("Currently at",  " at %7d :%7d",
-                        frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition());
+                        frontLeftMotor.getCurrentPosition(), frontRightMotor.getCurrentPosition());
                 telemetry.update();
             }
 
-            frontLeftDrive.setPower(0);
-            frontRightDrive.setPower(0);
-            backLeftDrive.setPower(0);
-            backRightDrive.setPower(0);
+            frontLeftMotor.setPower(0);
+            frontRightMotor.setPower(0);
+            backLeftMotor.setPower(0);
+            backRightMotor.setPower(0);
 
-            frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             sleep(250);
         }
