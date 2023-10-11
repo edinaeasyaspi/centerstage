@@ -44,10 +44,26 @@ public abstract class TestBotSimpleAuto extends LinearOpMode {
             telemetry.addData("Path", "Leg 3: %2.5f S Elapsed")
             telemetry.update();
         }
+        robot.init(hardwareMap);
 
+        telemetry.addData("Status", "Ready to run");
 
+        waitForStart();
 
+        robot.leftFrontMotor.setPower(1);
+        robot.leftBackMotor.setPower(1);
+        robot.rightFrontMotor.setPower(1);
+        robot.rightBackMotor.setPower(1);
+        sleep(1000);
 
+        robot.leftFrontMotor.setPower(-0.5);
+        robot.leftBackMotor.setPower(-0.5);
+        robot.rightFrontMotor.setPower(-0.5);
+        robot.rightBackMotor.setPower(-0.5);
+
+        telemetry.addData("Path", "Complete")
+                telemetry.update();
+                sleep(1000);
     }
 
 
