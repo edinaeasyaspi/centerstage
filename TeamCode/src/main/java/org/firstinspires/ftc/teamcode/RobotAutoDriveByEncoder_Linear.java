@@ -28,10 +28,10 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        frontLeftMotor  = hardwareMap.get(DcMotor.class, "frontLeft_drive");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRight_drive");
-        backLeftMotor  = hardwareMap.get(DcMotor.class, "backLeft_drive");
-        backRightMotor  = hardwareMap.get(DcMotor.class, "backRight_drive");
+        frontLeftMotor  = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+        backLeftMotor  = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        backRightMotor  = hardwareMap.get(DcMotor.class, "backRightMotor");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
