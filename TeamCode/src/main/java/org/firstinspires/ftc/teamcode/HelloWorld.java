@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 // Imports a library or package full of classes.
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -20,7 +21,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * @Disable
  */
 // extends OpMode means that the class is a child of OpMode, thus getting its behavior.
-@TeleOp()
+@Autonomous()
 public class HelloWorld extends OpMode {
     // The voids init() and loop() are required in an OpMode, and they have to be public.
     // We are using @Override to change the parent's behavior with our own.
@@ -28,7 +29,7 @@ public class HelloWorld extends OpMode {
     // init() Method runs once when INIT is pressed.
     public void init(){
     // Telemetry - Sending information to the Driver Station. Caption is title and value is the text.
-    telemetry.addData("Hello","World");
+    telemetry.addData("Hello","Suprem");
 }
     @Override
     // loop() Runs run repeatedly after driver presses PLAY but before STOP.
