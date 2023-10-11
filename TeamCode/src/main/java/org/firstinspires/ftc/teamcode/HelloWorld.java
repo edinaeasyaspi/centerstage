@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
 // Imports a library or package full of classes.
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 // This is a comment.
 /* This is another comment */
