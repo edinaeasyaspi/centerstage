@@ -3,8 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.TwoMotorDrive;
-
+@Deprecated
 @TeleOp()
 public class ArcadeDrive extends OpMode {
     TwoMotorDrive drive = new TwoMotorDrive();

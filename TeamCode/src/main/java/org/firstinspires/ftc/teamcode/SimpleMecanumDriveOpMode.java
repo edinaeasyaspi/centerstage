@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+@Deprecated
 @TeleOp()
 public abstract class SimpleMecanumDriveOpMode extends OpMode {
     TwoMotorDrive drive = new TwoMotorDrive();
