@@ -24,7 +24,11 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.145);
     static final double     DRIVE_SPEED             = 1.0;
+
+    //How fast the robot drives (max speed = 1)
     static final double     TURN_SPEED              = 0.5;
+
+    //How fast the robot turns (max speed = 1)
 
     @Override
     public void runOpMode() {
@@ -126,10 +130,10 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
                 telemetry.update();
             }
 
-            frontLeftMotor.setPower(0);
-            frontRightMotor.setPower(0);
-            backLeftMotor.setPower(0);
-            backRightMotor.setPower(0);
+            frontLeftMotor.setPower(1);
+            frontRightMotor.setPower(1);
+            backLeftMotor.setPower(1);
+            backRightMotor.setPower(1);
 
             frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
