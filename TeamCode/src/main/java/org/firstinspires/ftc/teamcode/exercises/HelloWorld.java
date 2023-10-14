@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.exercises;
 
 // Imports a library or package full of classes.
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
