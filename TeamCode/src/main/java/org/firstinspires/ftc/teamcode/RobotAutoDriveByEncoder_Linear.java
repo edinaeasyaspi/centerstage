@@ -49,11 +49,6 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
         backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
-        backLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        backRightMotor.setDirection(DcMotor.Direction.FORWARD);
-
 
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -75,10 +70,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
         waitForStart();
 
         encoderDrive(DRIVE_SPEED,  48,  48, 5.0);  // S1: Forward 48 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -24, -24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -24, 48, 5.0);   // S4: Forward 48 inches with 5 second timeout
-
+        
         telemetry.addData("Path", "Complete");
         telemetry.update();
         sleep(1000);  // pause to display final telemetry message.
