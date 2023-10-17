@@ -70,10 +70,6 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
         waitForStart();
 
         encoderDrive(DRIVE_SPEED,  22,  22, 0.2);  // S1: Forward 22 Inches with 0.2 Sec timeout
-        //encoderDrive(TURN_SPEED, x, x, x);
-        encoderDrive(DRIVE_SPEED, 21, 21, 0.2);    // S2: Forward 21 Inches with 0.2 Sec timeout
-        encoderDrive(DRIVE_SPEED, 20, 20, 0.2);    // S3: Forward 20 Inches with 0.2 Sec timeout
-        encoderDrive(DRIVE_SPEED, 53, 53, 0.1);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
