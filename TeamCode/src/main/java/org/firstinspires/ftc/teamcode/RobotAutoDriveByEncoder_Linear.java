@@ -1,42 +1,42 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;     // password for the control hub is edina8034
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="Robot: Auto Drive By Encoder", group="Robot")
+@Autonomous(name = "Robot: Auto Drive By Encoder", group = "Robot")
 
 public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
-    private DcMotor         frontLeftMotor   = null;
-    private DcMotor         frontRightMotor = null;
-    private DcMotor         backLeftMotor    = null;
-    private DcMotor         backRightMotor  = null;
+    private DcMotor frontLeftMotor = null;
+    private DcMotor frontRightMotor = null;
+    private DcMotor backLeftMotor = null;
+    private DcMotor backRightMotor = null;
 
-    private final ElapsedTime     runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
 
-    static final double     COUNTS_PER_MOTOR_REV    = 2880 ;    // eg: TETRIX Motor Encoder
+    static final double COUNTS_PER_MOTOR_REV = 1440;    // eg: TETRIX Motor Encoder
 
     //Motor numbers per rotation: 1440;1, 2880;2, 4320;3, 5760;4, 7200;5, etc.
-    static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // No External Gearing.
-    static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
-    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+    static final double DRIVE_GEAR_REDUCTION = 1.0;     // No External Gearing.
+    static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
+    static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.145);
-    static final double     DRIVE_SPEED             = 1.0;
+    static final double DRIVE_SPEED = 1.0;
 
     //How fast the robot drives (max speed = 1)
-    static final double     TURN_SPEED              = 0.5;
+    static final double TURN_SPEED = 0.5;
 
     //How fast the robot turns (max speed = 1)
 
     @Override
     public void runOpMode() {
 
-        frontLeftMotor  = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
         frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        backLeftMotor  = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        backRightMotor  = hardwareMap.get(DcMotor.class, "backRightMotor");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -55,13 +55,13 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        telemetry.addData("Starting at",  "%7d :%7d",
+        telemetry.addData("Starting at", "%7d :%7d",
                 frontLeftMotor.getCurrentPosition(),
                 frontRightMotor.getCurrentPosition());
 
         telemetry.update();
 
-        telemetry.addData("Starting at",  "%7d :%7d",
+        telemetry.addData("Starting at", "%7d :%7d",
                 backLeftMotor.getCurrentPosition(),
                 backRightMotor.getCurrentPosition());
 
@@ -69,11 +69,13 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
         waitForStart();
 
-        encoderDrive(DRIVE_SPEED,  48,  48, 5.0);  // S1: Forward 48 Inches with 5 Sec timeout
+        double DISTANCE = 60; // in
+
+        encoderDrive(DRIVE_SPEED, 100, 100, 0.2);  // S1: Forward 22 Inches with 0.2 Sec timeout
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
-        sleep(1000);  // pause to display final telemetry message.
+        sleep(100);  // pause to display final telemetry message.
     }
 
     public void encoderDrive(double speed,
@@ -83,14 +85,14 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
         int newBackRightTarget;
         int newFrontLeftTarget;
         int newFrontRightTarget;
-
+        
 
         if (opModeIsActive()) {
-            
-            newBackLeftTarget = backLeftMotor.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newBackRightTarget = backRightMotor.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            newFrontLeftTarget = backLeftMotor.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newFrontRightTarget = backRightMotor.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+
+            newBackLeftTarget = backLeftMotor.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newBackRightTarget = backRightMotor.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
+            newFrontLeftTarget = backLeftMotor.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newFrontRightTarget = backRightMotor.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
 
             frontLeftMotor.setTargetPosition(newBackLeftTarget);
             frontRightMotor.setTargetPosition(newBackRightTarget);
@@ -111,21 +113,20 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     frontLeftMotor.isBusy() &&
-                     frontRightMotor.isBusy() &&
-                backLeftMotor.isBusy() &&
-                    backRightMotor.isBusy())
-            {
+                    frontRightMotor.isBusy() &&
+                    backLeftMotor.isBusy() &&
+                    backRightMotor.isBusy()) {
 
-                telemetry.addData("Running to",  " %7d :%7d", newBackLeftTarget,  newBackRightTarget);
-                telemetry.addData("Currently at",  " at %7d :%7d",
+                telemetry.addData("Running to", " %7d :%7d", newBackLeftTarget, newBackRightTarget);
+                telemetry.addData("Currently at", " at %7d :%7d",
                         frontLeftMotor.getCurrentPosition(), frontRightMotor.getCurrentPosition());
                 telemetry.update();
             }
 
-            frontLeftMotor.setPower(1);
-            frontRightMotor.setPower(1);
-            backLeftMotor.setPower(1);
-            backRightMotor.setPower(1);
+            frontLeftMotor.setPower(0);
+            frontRightMotor.setPower(0);
+            backLeftMotor.setPower(0);
+            backRightMotor.setPower(0);
 
             frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
