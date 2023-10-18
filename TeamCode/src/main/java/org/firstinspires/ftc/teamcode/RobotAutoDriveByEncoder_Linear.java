@@ -20,7 +20,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
     //Motor numbers per rotation: 1440;1, 2880;2, 4320;3, 5760;4, 7200;5, etc.
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // No External Gearing.
-    static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
+    static final double WHEEL_DIAMETER_INCHES = 3;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.145);
     static final double DRIVE_SPEED = 1.0;
@@ -69,7 +69,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
         waitForStart();
 
-        double DISTANCE = 60; // in
+        double DISTANCE = 60;
 
         encoderDrive(DRIVE_SPEED, 100, 100, 0.2);  // S1: Forward 22 Inches with 0.2 Sec timeout
 
@@ -85,7 +85,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
         int newBackRightTarget;
         int newFrontLeftTarget;
         int newFrontRightTarget;
-        
+
 
         if (opModeIsActive()) {
 
