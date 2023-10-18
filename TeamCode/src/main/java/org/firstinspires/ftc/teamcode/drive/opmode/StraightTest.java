@@ -18,6 +18,8 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 @Autonomous(group = "drive")
 public class StraightTest extends LinearOpMode {
     public static double DISTANCE = 60; // in
+    public static double DISTANCE1 = 60;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,6 +29,7 @@ public class StraightTest extends LinearOpMode {
 
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(DISTANCE)
+                .backward(DISTANCE1)
                 .build();
 
         waitForStart();
