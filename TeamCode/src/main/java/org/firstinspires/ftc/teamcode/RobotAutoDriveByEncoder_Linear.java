@@ -16,7 +16,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
-    static final double COUNTS_PER_MOTOR_REV = 2880;    // eg: TETRIX Motor Encoder
+    static final double COUNTS_PER_MOTOR_REV = 1440;    // eg: TETRIX Motor Encoder
 
     //Motor numbers per rotation: 1440;1, 2880;2, 4320;3, 5760;4, 7200;5, etc.
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // No External Gearing.
@@ -69,7 +69,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
         waitForStart();
 
-        encoderDrive(DRIVE_SPEED, 22, 22, 0.2);  // S1: Forward 22 Inches with 0.2 Sec timeout
+        encoderDrive(DRIVE_SPEED, 100, 100, 0.2);  // S1: Forward 22 Inches with 0.2 Sec timeout
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
