@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.motors.NeveRest40Gearmotor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -28,7 +27,7 @@ public class RobotAutoDriveByEncoder_Linear extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        NeveRest40Gearmotor
+
         frontLeftMotor  = hardwareMap.get(DcMotor.class, "frontLeftMotor");
         frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
         backLeftMotor  = hardwareMap.get(DcMotor.class, "backLeftMotor");
