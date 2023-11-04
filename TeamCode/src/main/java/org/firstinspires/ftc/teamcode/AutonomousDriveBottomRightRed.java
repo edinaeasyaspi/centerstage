@@ -1,22 +1,23 @@
+
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+        import com.acmerobotics.dashboard.FtcDashboard;
+        import com.acmerobotics.dashboard.config.Config;
+        import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+        import com.acmerobotics.roadrunner.geometry.Pose2d;
+        import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
+        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+        import org.firstinspires.ftc.robotcore.external.Telemetry;
+        import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 /*
  * This is a simple routine to test translational drive capabilities.
  */
 @Config
 @Autonomous(group = "drive")
-public abstract class AutonomousDriveTopRight extends LinearOpMode {
+public abstract class AutonomousDriveBottomRightRed extends LinearOpMode {
 
 
     abstract class sleep {
