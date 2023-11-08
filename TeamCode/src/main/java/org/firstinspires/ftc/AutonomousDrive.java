@@ -1,4 +1,5 @@
-package org.firstinspires.ftc.teamcode.drive.opmode;
+package org.firstinspires.ftc;
+
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -16,8 +17,8 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
  * This is a simple routine to test translational drive capabilities.
  */
 @Config
-@Autonomous(name = "", group = "drive")
-public abstract class StraightTest extends LinearOpMode {
+@Autonomous(group = "drive")
+public abstract class AutonomousDrive extends LinearOpMode {
 
 
     abstract class sleep {
@@ -50,13 +51,13 @@ public abstract class StraightTest extends LinearOpMode {
             SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
             TrajectoryBuilder trajectory = drive.trajectoryBuilder(new Pose2d());
-                    trajectory.forward(DISTANCE);
+            trajectory.forward(DISTANCE);
             drive.turn(Math.toRadians(ANGLE));
-                trajectory.forward(DISTANCE1);
+            trajectory.forward(DISTANCE1);
             drive.turn(Math.toRadians(ANGLE2));
-                    trajectory.forward(DISTANCE2);
+            trajectory.forward(DISTANCE2);
             drive.turn(Math.toRadians(ANGLE3));
-                    trajectory.forward(DISTANCE3);
+            trajectory.forward(DISTANCE3);
             trajectory.build();
 
 
@@ -76,4 +77,7 @@ public abstract class StraightTest extends LinearOpMode {
             while (!isStopRequested() && opModeIsActive()) ;
         }
     }
+
+
+
 }
