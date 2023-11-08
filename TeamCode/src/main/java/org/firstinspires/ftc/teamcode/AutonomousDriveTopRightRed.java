@@ -31,11 +31,9 @@ public abstract class AutonomousDriveTopRightRed extends LinearOpMode {
     }
 
     public class TurnTest extends LinearOpMode {
-        public double ANGLE1 = 90;
+        public double DISTANCE1 = 50;
 
-        public double DISTANCE1 = 2;
 
-        public double DISTANCE2 = 48;
 
 
 
@@ -46,9 +44,7 @@ public abstract class AutonomousDriveTopRightRed extends LinearOpMode {
             SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
             TrajectoryBuilder trajectory = drive.trajectoryBuilder(new Pose2d());
-            drive.turn(Math.toRadians(ANGLE1));
-            trajectory.forward(DISTANCE1);
-            trajectory.forward(DISTANCE2);
+            trajectory.strafeLeft(DISTANCE1);
             trajectory.build();
 
 

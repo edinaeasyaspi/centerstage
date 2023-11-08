@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
  */
 @Config
 @Autonomous(group = "drive")
-public abstract class AutonomousDrive extends LinearOpMode {
+public abstract class AutonomousDrive1 extends LinearOpMode {
 
 
     abstract class sleep {
