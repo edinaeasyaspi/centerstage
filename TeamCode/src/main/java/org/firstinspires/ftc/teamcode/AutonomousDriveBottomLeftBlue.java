@@ -27,6 +27,7 @@ public class AutonomousDriveBottomLeftBlue extends LinearOpMode {
             Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
 
             SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
            // drive.turn(Math.toRadians(-90));
 
             Trajectory autonomousTrajectory = drive.trajectoryBuilder(new Pose2d(-35,61))
@@ -43,6 +44,7 @@ public class AutonomousDriveBottomLeftBlue extends LinearOpMode {
                     //.strafeLeft(45)
                     .build();
 
+
 //            TrajectoryBuilder trajectory = drive.trajectoryBuilder(new Pose2d());
 //            trajectory.strafeLeft(DISTANCE1);
 //            trajectory.build();
@@ -53,6 +55,7 @@ public class AutonomousDriveBottomLeftBlue extends LinearOpMode {
             while (opModeIsActive() && !isStopRequested()) {
                 drive.followTrajectory(autonomousTrajectory);
             }
+
 
             Pose2d poseEstimate = drive.getPoseEstimate();
             telemetry.addData("finalX", poseEstimate.getX());
