@@ -28,14 +28,19 @@ public class AutonomousDriveBottomLeftBlue extends LinearOpMode {
 
             SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-           // drive.turn(Math.toRadians(-90));
 
-            Trajectory autonomousTrajectory = drive.trajectoryBuilder(new Pose2d(-35,61))
-                    .splineTo(new Vector2d(-60,61), Math.toRadians(0))
-                    .splineTo(new Vector2d(-60,86), Math.toRadians(0))
-                    .splineTo(new Vector2d(-85,86), Math.toRadians(0))
-                    .splineTo(new Vector2d(-85,61), Math.toRadians(0))
-                    .splineTo(new Vector2d(-110,61), Math.toRadians(0))
+            Trajectory autonomousTrajectory = drive.trajectoryBuilder(new Pose2d())//-35,61
+                    .lineToLinearHeading(new Pose2d(25, 0, Math.toRadians(0)))
+
+                    // .splineTo(new Vector2d(-24,6), Math.toRadians(0))
+                   // .splineTo(new Vector2d(-6,26), Math.toRadians(0))
+
+
+//                    .splineTo(new Vector2d(-60,61), Math.toRadians(0))
+//                    .splineTo(new Vector2d(-60,86), Math.toRadians(0))
+//                    .splineTo(new Vector2d(-85,86), Math.toRadians(0))
+//                    .splineTo(new Vector2d(-85,61), Math.toRadians(0))
+//                    .splineTo(new Vector2d(-110,61), Math.toRadians(0))
 
                     //.strafeLeft(25)
                     // .forward(25)
@@ -49,21 +54,27 @@ public class AutonomousDriveBottomLeftBlue extends LinearOpMode {
 //            trajectory.strafeLeft(DISTANCE1);
 //            trajectory.build();
 
-
-            waitForStart();
-
-            while (opModeIsActive() && !isStopRequested()) {
-                drive.followTrajectory(autonomousTrajectory);
-            }
-
-
             Pose2d poseEstimate = drive.getPoseEstimate();
             telemetry.addData("finalX", poseEstimate.getX());
             telemetry.addData("finalY", poseEstimate.getY());
             telemetry.addData("finalHeading", poseEstimate.getHeading());
             telemetry.update();
 
-            while (!isStopRequested() && opModeIsActive()) ;
+            waitForStart();
+
+            drive.turn(Math.toRadians(90));
+            drive.followTrajectory(autonomousTrajectory);
+
+//            while (opModeIsActive() && !isStopRequested()) {
+//                drive.followTrajectory(autonomousTrajectory);
+//
+//                drive.getPoseEstimate();
+//                telemetry.addData("finalX", poseEstimate.getX());
+//                telemetry.addData("finalY", poseEstimate.getY());
+//                telemetry.addData("finalHeading", poseEstimate.getHeading());
+//                telemetry.update();
+//            }
+
         }
     }
 //}
